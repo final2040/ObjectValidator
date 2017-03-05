@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ObjectValidator
 {
-    public class Validator
+    public class Validator<T>
     {
         private readonly List<IRule> _rules = new List<IRule>();
         private readonly ReflectionHelper _reflectionHelper;
@@ -14,7 +14,7 @@ namespace ObjectValidator
             _reflectionHelper = new ReflectionHelper();
         }
 
-        public bool TryValidate(object o, ICollection<ValidationError> errorCollection)
+        public bool TryValidate(T o, ICollection<ValidationError> errorCollection)
         {
             if(errorCollection == null) throw new ArgumentNullException(nameof(errorCollection), "Argument cannot be null.");
             if(o == null) throw new ArgumentNullException(nameof(o), "Argument cannot be null.");

@@ -7,39 +7,26 @@ namespace ObjectValidator
 {
     public class ReflectionHelper
     {
-        public ReflectionHelper()
+        public Dictionary<string, Type> GetProperties<T>(T o)
         {
-        }
+            if(o == null) throw new ArgumentNullException(nameof(o),"Object cannot be null.");
 
-        public Dictionary<string, Type> GetProperties(object o)
-        {
-            if (o == null)
-                throw new ArgumentNullException("o", "Object cannot be null.");
-
-            Dictionary<string,Type> childProperties = o.GetType()
-                .GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public)
+            return typeof(T)
+                .GetProperties()
                 .Where(p => p.CanRead)
                 .ToDictionary(p => p.Name, p => p.PropertyType);
-
-            foreach (PropertyInfo property in o.GetType().GetProperties().Where(p => p.CanRead && !childProperties.ContainsKey(p.Name)))
-            {
-                childProperties.Add(property.Name, property.PropertyType);
-            }
-
-            return childProperties;
         }
 
-        public object GetPropertyValue(object o, string propertyName, Type valueType)
+        public object GetPropertyValue<T>(T o, string propertyName, Type valueType)
         {
-            if (o == null)
-                throw new ArgumentNullException("o", "Object cannot be null.");
+            if(o == null) throw new ArgumentNullException(nameof(o), "Object cannot be null.");
             if (GetProperties(o).All(p => p.Key != propertyName))
                 throw new ArgumentException("Especified property dont exists.");
 
-            return o.GetType().GetProperty(propertyName, valueType).GetValue(o);
+            return typeof(T).GetProperty(propertyName, valueType).GetValue(o);
         }
 
-        public Dictionary<string, object> GetPropertiesTable(object o)
+        public Dictionary<string, object> GetPropertiesTable<T>(T o)
         {
             return GetProperties(o)
                 .ToDictionary(property => property.Key, property => GetPropertyValue(o, property.Key, property.Value));

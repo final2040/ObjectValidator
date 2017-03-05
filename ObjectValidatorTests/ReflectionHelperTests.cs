@@ -140,20 +140,6 @@ namespace ObjectValidatorTests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GetPropertyTable_WhenNullObjectIsProvided_ShouldThrowArgumentNullException()
-        {
-            // Arrange
-
-            var reflectionHelper = new ReflectionHelper();
-
-            // Act
-            Dictionary<string, object> result = reflectionHelper.GetPropertiesTable(null);
-
-            // Assert
-        }
-
-        [Test]
         public void GetPropertiesTable_WhenInheritedPropertyIsAmbiguos_ShouldIgnoreParentProperty()
         {
             // Arrange

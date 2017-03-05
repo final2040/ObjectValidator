@@ -388,7 +388,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { Name = "Rene"};
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Name", "El campo {0} es requerido"));
             // act
@@ -404,7 +404,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { Name = "Rene" };
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             objectValidator.AddRule(new RequiredRule("Name", "El campo {0} es requerido"));
             // act
             bool result = objectValidator.TryValidate(testObject, null);
@@ -417,7 +417,7 @@ namespace ObjectValidatorTests
         public void TryValidate_WhenObjectIsNull_ShouldThrowArgumentNullException()
         {
             // arrange
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             var errorList = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Name", "El campo {0} es requerido"));
             // act
@@ -432,7 +432,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { Name = "Rene" };
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Names", "El campo {0} es requerido"));
             // act
@@ -447,7 +447,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { };
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Name", "El campo {0} es requerido"));
             // act
@@ -462,7 +462,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { };
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Name", "El campo {0} es requerido"));
             // act
@@ -481,7 +481,7 @@ namespace ObjectValidatorTests
         public void AddRule_WhenNullObjectIsProvided_ShouldThrowArgumentNullException()
         {
             // arrange
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
 
             // act
@@ -495,7 +495,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { Name = "Rene", Address = "Norte 9", Notes = "final20@gmail.com", Age = 18};
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Address", "El campo {0} es requerido", true));
             objectValidator.AddRule(new RegexRule("Name", "El campo {0} no tiene el formato esperado: {1}","^([A-Za-z]*)$"));
@@ -514,7 +514,7 @@ namespace ObjectValidatorTests
         {
             // arrange
             var testObject = new TestObject() { Name = "Ren1e", Address = "Nortedfdsdfeesdf 9", Notes = "final20@gmail.com", Age = 12 };
-            var objectValidator = new Validator();
+            var objectValidator = new Validator<TestObject>();
             List<ValidationError> errors = new List<ValidationError>();
             objectValidator.AddRule(new RequiredRule("Address", "El campo {0} es requerido", true));
             objectValidator.AddRule(new RegexRule("Name", "El campo {0} no tiene el formato esperado: {1}", "^([A-Za-z]*)$"));
