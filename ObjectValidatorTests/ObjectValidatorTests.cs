@@ -204,6 +204,60 @@ namespace ObjectValidatorTests
             Assert.IsFalse(result);
         }
 
+        [Test]
+        public void Regex_WhenDontMatchRegexAndIgnoreEmptyStringIsActive_ShouldReturnFalse()
+        {
+            // arrange
+            RuleBase requiredRule = new RegexRule("Age", "El campo {0} debe de coincidir con la expresión regular {1}", "^([A-Za-z]*)$", true);
+
+            // act
+            bool result = requiredRule.IsValid("Re1ne");
+
+            // assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Regex_WhenMatchRegexAndIgnoreEmptyStringIsActive_ShouldReturnTrue()
+        {
+            // arrange
+            RuleBase requiredRule = new RegexRule("Age", "El campo {0} debe de coincidir con la expresión regular {1}", "^([A-Za-z]*)$", true);
+
+            // act
+            bool result = requiredRule.IsValid("Rene");
+
+            // assert
+            Assert.IsTrue(result);
+        }
+
+
+        [Test]
+        public void Regex_WhenIgnoreEmptyStringIsEnabled_ShouldReturnTrue()
+        {
+            // arrange
+            RuleBase requiredRule = new RegexRule("Age", "El campo {0} debe de coincidir con la expresión regular {1}", "^([A-Za-z]*)$", true);
+
+            // act
+            bool result = requiredRule.IsValid("");
+
+            // assert
+            Assert.IsTrue(result);
+        }
+
+        [Test]
+        public void Regex_WhenNullObjectIsProvided_ShouldReturnFalse()
+        {
+            // arrange
+            RuleBase requiredRule = new RegexRule("Age", "El campo {0} debe de coincidir con la expresión regular {1}", "^([A-Za-z]*)$", true);
+
+            // act
+            bool result = requiredRule.IsValid(null);
+
+            // assert
+            Assert.IsFalse(result);
+        }
+
+
 
         [Test]
         public void Regex_WhenIsNull_ShouldReturnFalse()
@@ -337,22 +391,7 @@ namespace ObjectValidatorTests
             // assert
             Assert.IsFalse(result);
         }
-
-        [Test]
-        public void MaxLength_WhenEmptyStringObjectIsProvided_ShouldReturnFalse()
-        {
-            // arrange
-            var testObject = new TestObject() { Name = "" };
-            var requiredRule = new MaxLengthRule("Name",25, "El campo {0} no corresponde con ningun correo");
-            List<ValidationError> results = new List<ValidationError>();
-
-            // act
-            bool result = requiredRule.IsValid(testObject.Name);
-
-            // assert
-            Assert.IsFalse(result);
-        }
-
+        
         [Test]
         public void MaxLength_WhenStringIsLargerThanMaxLength_ShouldReturnTrue()
         {

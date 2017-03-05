@@ -5,6 +5,7 @@ namespace ObjectValidator.rules
 {
     public class RegexRule : RuleBase
     {
+        public bool IgnoreEmptyString { get; } = false;
         public Regex Regex { get; }
         public override string ErrorMessage
         {
@@ -12,15 +13,17 @@ namespace ObjectValidator.rules
             set { _errorMessage = value; }
         }
 
-        public RegexRule(string propertyName, string errorMessage, string regularExpresion) : base(propertyName, errorMessage)
+        public RegexRule(string propertyName, string errorMessage, string pattern) : this(propertyName, errorMessage, pattern,false){ }
+        public RegexRule(string propertyName, string errorMessage, string pattern, bool ignoreEmptyString) : base(propertyName, errorMessage)
         {
-            Regex = new Regex(regularExpresion);
+            IgnoreEmptyString = ignoreEmptyString;
+            Regex = new Regex(pattern);
         }
-
 
         public override bool IsValid(object o)
         {
-            return o!=null && Regex.IsMatch(o.ToString());
+            if (o == null) return false;
+            return IgnoreEmptyString && string.IsNullOrWhiteSpace(o.ToString()) || Regex.IsMatch(o.ToString());
         }
     }
 }
