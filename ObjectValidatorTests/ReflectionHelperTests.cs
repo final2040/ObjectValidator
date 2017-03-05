@@ -20,7 +20,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             var testObject = new TestObject();
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             var result = reflectionHelper.GetProperties(testObject);
@@ -45,7 +45,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             TestObject testObject = null;
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             var result = reflectionHelper.GetProperties(testObject);
@@ -60,7 +60,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             var testObject = new TestObject() { Name = "Jorge" };
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             object result = reflectionHelper.GetPropertyValue(testObject, "Name", typeof(string));
@@ -75,7 +75,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             TestObject testObject = null;
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             object result = reflectionHelper.GetPropertyValue(testObject, "Name", typeof(string));
@@ -90,7 +90,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             var testObject = new TestObject() { Name = "Jorge" };
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             object result = reflectionHelper.GetPropertyValue(testObject, "imnotexistentproperty",typeof(string));
@@ -115,7 +115,7 @@ namespace ObjectValidatorTests
                 Phone = 50474200,
                 Salary = 1325.25M
             };
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             Dictionary<string, object> result = reflectionHelper.GetPropertiesTable(testObject);
@@ -144,7 +144,7 @@ namespace ObjectValidatorTests
         {
             // Arrange
             var testObject = new InheritedObject() {TestProperty = new InheritedObject()};
-            var reflectionHelper = new ReflectionHelper();
+            var reflectionHelper = new PropertyReflectionHelper();
 
             // Act
             var result = reflectionHelper.GetPropertiesTable<TestObject>(testObject);
