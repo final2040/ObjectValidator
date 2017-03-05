@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ObjectValidator")]
-[assembly: AssemblyDescription("A simple object validator Library")]
+[assembly: AssemblyTitle("ObjectValidatorTests")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("TemiquiSoft")]
-[assembly: AssemblyProduct("ObjectValidator")]
-[assembly: AssemblyCopyright("Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License 2017 René Emmanuel Zamorano Flores")]
-[assembly: AssemblyTrademark("TemiquiSoft")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ObjectValidatorTests")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ddcbfe20-bd33-4462-b5e0-553f35617b99")]
+[assembly: Guid("24d3a3e3-eeff-4c21-8fa4-db5718a80f65")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.*")]
-
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
