@@ -147,7 +147,7 @@ namespace ObjectValidatorTests
             var reflectionHelper = new ReflectionHelper();
 
             // Act
-            var result = reflectionHelper.GetPropertiesTable(testObject);
+            var result = reflectionHelper.GetPropertiesTable<TestObject>(testObject);
 
             // Assert
             CollectionAssert.AllItemsAreUnique(result);

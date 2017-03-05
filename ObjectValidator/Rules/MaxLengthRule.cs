@@ -24,7 +24,7 @@
         public override bool IsValid(object o)
         {
             string validateObject = o as string;
-            return !string.IsNullOrEmpty(validateObject) && validateObject.Length <= _maxLength;
+            return validateObject != null && validateObject.Length <= _maxLength;
             
         }
     }
